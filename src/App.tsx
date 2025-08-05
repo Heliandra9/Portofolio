@@ -9,31 +9,40 @@ import './App.css'
 
 function App() {
   const [page, setPage]= useState("Home")
+  const [lanyard, setLanyard] = useState(true)
+  const funcLanyard = () => {
+    setLanyard(!lanyard)
+    console.log(lanyard)
+  }
   const nav = [
-    {name: "Home", onClick: ()=>setPage("Home")},
-    {name: "About", onClick: ()=>setPage("About")},
+    {name: "Home", onClick: ()=>{setPage("Home")}},
+    {name: "About", onClick: ()=>{setPage("About")}},
   ]
   return (
     <div className="w-full overflow-y-hidden h-screen flex items-center flex-col bg-[#22223b]">
-      <div className="flex w-full h-20 gap-12 items-center border-b border-b-blue-700 bg-[#22224b]">
+      <div className="flex w-full h-20 gap-12 items-center border-b border-b-blue-300 bg-[#22224b]">
         <img src={logo} alt="logo" className='size-33' />
-        <div className="flex gap-8 justify-end w-full">
-          {/* {nav.map(item, i=>(
-            <p key={i} className={`text-white text-md cursor-pointer font-semibold`}>{item.name}</p>
-          ))} */}
+        <div className="flex gap-8 justify-center w-full">
+          {nav.map((item, i) => (
+            <p key={i} onClick={item.onClick} className={`text-md cursor-pointer font-semibold ${page === item.name ?'font-bold scale-105 text-blue-300 underline' :'text-white hover:font-bold hover:scale-105 hover:text-blue-300 hover:underline'} transition-all`}>{item.name}</p>
+          ))}
         </div>
         logo github
       </div>
-      <div className="flex gap-4 justify-between">
-        <div className="flex w-1/2 relative items-center">
+      <div className="flex gap-4 justify-between relative">
+        <div onClick={funcLanyard} className="bg-[#22224b] cursor-pointer rounded-full border-blue-300 border text-md absolute top-4 right-0 p-2">.</div>
+        <div className="flex w-1/2 flex-col justify-center">
+          <p className="text-md font-semibold text-blue-300">Hello World i'm</p>
+          <h1 className="text-4xl font-bold text-white">Heliandra Audrey Atha Fahrezi</h1>
           <TextType 
-            className="w-100 text-center"
-            text={["Welcome to my portofolio", "Explore my projects", "Contact me for collaborations"]}
+            className="w-100 bg-gradient-to-r from-white to-blue-500 inline-block text-transparent bg-clip-text"
+            text={["Web Developer", "Full-stack engineer", "Contact me for collaborations"]}
             typingSpeed={75}
             pauseDuration={1500}
             showCursor={true}
             cursorCharacter="|"
           />
+          <p className="text-md font-semibold text-white">Welcome to my portofolio website🌐. 👋</p>
         </div>
         <div className="flex w-1/2">
           {/* <ProfileCard
@@ -48,7 +57,7 @@ function App() {
             enableMobileTilt={false}
             onContactClick={() => {window.open('https:instagram.com/lirezi_', '_blank')}}
           /> */}
-          <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} fov={18} transparent={true} />
+          {lanyard === true && <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} fov={18} transparent={true} />}
         </div>
       </div>
     </div>
