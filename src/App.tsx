@@ -30,7 +30,7 @@ function App() {
         logo github
       </div>
       <div className="flex gap-4 justify-between relative">
-        <div onClick={funcLanyard} className="bg-[#22224b] cursor-pointer rounded-full border-blue-300 border text-md absolute top-4 right-0 p-2">.</div>
+        <button onClick={funcLanyard} className="bg-[#22224b] cursor-pointer rounded-full border-blue-300 border text-md absolute top-4 right-0 p-2">🪪</button>
         <div className="flex w-1/2 flex-col justify-center">
           <p className="text-md font-semibold text-blue-300">Hello World i'm</p>
           <h1 className="text-4xl font-bold text-white">Heliandra Audrey Atha Fahrezi</h1>
