@@ -1,15 +1,31 @@
+import { useState } from 'react'
 import TextType from './Components/TextType/TextType'
 import ProfileCard from './Components/ProfileCard/ProfileCard'
 import avatar from './assets/Avatar.png'
-import Folder from './Components/Folder/Folder'
+import logo from './assets/Lanyard.png'
+import Lanyard from './Components/Lanyard/Lanyard'
 
 import './App.css'
 
 function App() {
+  const [page, setPage]= useState("Home")
+  const nav = [
+    {name: "Home", onClick: ()=>setPage("Home")},
+    {name: "About", onClick: ()=>setPage("About")},
+  ]
   return (
-    <div className="w-full h-screen flex justify-center items-center flex-col bg-gradient-to-br from-[#23272f] to-[#5227FF]">
+    <div className="w-full overflow-y-hidden h-screen flex items-center flex-col bg-[#22223b]">
+      <div className="flex w-full h-20 gap-12 items-center border-b border-b-blue-700 bg-[#22224b]">
+        <img src={logo} alt="logo" className='size-33' />
+        <div className="flex gap-8 justify-end w-full">
+          {/* {nav.map(item, i=>(
+            <p key={i} className={`text-white text-md cursor-pointer font-semibold`}>{item.name}</p>
+          ))} */}
+        </div>
+        logo github
+      </div>
       <div className="flex gap-4 justify-between">
-        <div className="flex flex-col w-1/2 gap-[50%] relative items-center">
+        <div className="flex w-1/2 relative items-center">
           <TextType 
             className="w-100 text-center"
             text={["Welcome to my portofolio", "Explore my projects", "Contact me for collaborations"]}
@@ -18,12 +34,9 @@ function App() {
             showCursor={true}
             cursorCharacter="|"
           />
-          <div className='relative'>
-            <Folder size={1} color="#0a192f" className="custom-folder " />
-          </div>
         </div>
         <div className="flex w-1/2">
-          <ProfileCard
+          {/* <ProfileCard
             name="Heliandra A.A.F"
             title="Software Engineer"
             handle="lirezi_"
@@ -34,7 +47,8 @@ function App() {
             enableTilt={true}
             enableMobileTilt={false}
             onContactClick={() => {window.open('https:instagram.com/lirezi_', '_blank')}}
-          />
+          /> */}
+          <Lanyard position={[0, 0, 15]} gravity={[0, -40, 0]} fov={18} transparent={true} />
         </div>
       </div>
     </div>
