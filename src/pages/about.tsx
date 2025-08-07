@@ -1,11 +1,18 @@
 import ProfileCard from "../Components/ProfileCard/ProfileCard";
+import { useState } from "react";
 import Avatar from "../assets/Avatar.png";
 import lanyard from "../assets/Lanyard.png"
+import SkillsCard from "../Components/SkillsCard/SkillsCard";
 
 export default function About(props) {
+    const about=[
+        { name: "Skills"},
+        { name: "Tools"},
+    ]
+    const [description, setDescription] = useState("Skills");
     return (
-        <div className={`gap-4 justify-between w-full px-4 flex transition-all duration-300 ease-in-out ${props.page === 'Home' ? 'absolute z-0 -translate-y-500' : props.page === "About" && ''}`}>
-            <div className="flex w-full h-full p-4 gap-12 mt-8 border border-blue-300 rounded-2xl justify-between">
+        <div className={`gap-4 justify-between w-full mt-20 px-4 py-4 flex flex-col transition-all duration-300 ease-in-out ${props.page === 'Home' ? 'absolute z-0 -translate-y-500' : props.page === "About" && ''}`}>
+            <div className="flex w-full h-full p-4 gap-12 mt-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl justify-between">
                 <div className="relative">
                     <ProfileCard
                         name="Heliandra A.A.F"
@@ -27,6 +34,19 @@ export default function About(props) {
                         Quisque a turpis ex. Sed pharetra, est sed tristique finibus, neque ante eleifend ipsum, quis feugiat lorem est et sapien. Vivamus fringilla nunc quis euismod porta. Pellentesque egestas pharetra quam id gravida. Suspendisse in erat ornare, tincidunt libero a, auctor magna. Aenean id iaculis nisl. Maecenas efficitur tincidunt pretium. Phasellus tincidunt tincidunt vehicula.
                         Phasellus varius varius ligula, ac bibendum sem venenatis sed. Nullam sit amet ullamcorper augue. Sed non sollicitudin nisi, nec pretium nisl. Nullam neque ex, vestibulum volutpat enim ac, dignissim porta felis. Aliquam tempor elementum ex, eu ullamcorper quam porta volutpat. Nullam sollicitudin, felis in placerat ultrices, urna mauris dictum purus, eu hendrerit leo sem nec elit. Maecenas nibh mauris, pharetra in massa vel, consequat facilisis diam.</p>
                 </div>
+            </div>
+            <div className="w-full pl-2 flex gap-8">
+                {about.map((item, i) => (
+                    <p key={i} onClick={()=>setDescription(`${item.name}`)} className={`text-md font-semibold transition-all ${description === item.name ? 'text-blue-300 scale-105 underline' :'text-white hover:text-blue-300  hover:scale-105  hover:underline'}`}>{item.name}</p>
+                ))}
+            </div>
+            <div className="w-full p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl">
+                <h1 className="text-2xl font-semibold text-blue-300">{description}</h1>
+                {description === "Skills" ? (
+                    <SkillsCard />
+                ) : (
+                    <p className="text-md text-white">Tools content goes here.</p>
+                )}
             </div>
         </div>
     )
