@@ -12,7 +12,7 @@ function App() {
     {name: "About", onClick: ()=>{setPage("About")}},
   ]
   return (
-    <div className={`w-full ${page === 'Home' ? 'overflow-y-hidden h-screen': 'min-h-screen'} flex items-center flex-col bg-[#22223b]`}>
+    <div className={`w-full min-h-screen flex items-center flex-col bg-[#22223b]`}>
       <div className={`flex w-full h-20 gap-12 z-100 fixed top-0 items-center border-b border-b-blue-300 ${page === 'Home' ? 'bg-[#22224b]' : 'bg-[#22225b]/50 backdrop-blur-md'} justify-between px-8 transition-all duration-300 ease-in-out`}>
         <img src={logo} alt="logo" className='size-33' />
         <div className="flex gap-8 justify-center w-full">
@@ -22,8 +22,10 @@ function App() {
         </div>
         <img src={github} alt="logo" className='size-12 bg-white rounded-full p-0' />
       </div>
-      <Home page={page}/>
-      <About page={page}/>
+      <div className={`relative overflow-hidden`}>
+        <Home page={page}/>
+        <About page={page}/>
+      </div>
     </div>
   )
 }

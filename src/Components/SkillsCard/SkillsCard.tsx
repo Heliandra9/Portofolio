@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function SkillsCard() {
+export default function SkillsCard(props) {
     const [skills] = useState([
         { name: "JavaScript" },
         { name: "React" },
@@ -13,7 +13,7 @@ export default function SkillsCard() {
     const [hoverSkills, setHoverSkills] = useState("");
 
     return (
-        <div className="w-full p-4 grid gap-4 grid-cols-4">
+        <div className={`w-full p-4 grid gap-4 grid-cols-4 transition-all duration-300 ease-in-out ${props.description === "Skills" ?'' :'absolute top-0 -translate-x-500'}`}>
             {skills.map((skill, index) => (
                 <div
                     key={index}

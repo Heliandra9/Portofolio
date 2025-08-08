@@ -1,8 +1,9 @@
 import ProfileCard from "../Components/ProfileCard/ProfileCard";
 import { useState } from "react";
 import Avatar from "../assets/Avatar.png";
-import lanyard from "../assets/Lanyard.png"
+import lanyard from "../assets/Lanyard.png";
 import SkillsCard from "../Components/SkillsCard/SkillsCard";
+import ToolsCard from "../Components/ToolsCard/ToolsCard";
 
 export default function About(props) {
     const about=[
@@ -11,7 +12,7 @@ export default function About(props) {
     ]
     const [description, setDescription] = useState("Skills");
     return (
-        <div className={`gap-4 justify-between w-full mt-20 px-4 py-4 flex flex-col transition-all duration-300 ease-in-out ${props.page === 'Home' ? 'absolute z-0 -translate-y-500' : props.page === "About" && ''}`}>
+        <div className={`gap-4 justify-between w-full mt-20 px-4 py-4 flex flex-col transition-all duration-300 ease-in-out ${props.page === 'Home' ? 'absolute z-0 scale-0  translate-x-500' : props.page === "About" && ''}`}>
             <div className="flex w-full h-full p-4 gap-12 mt-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl justify-between">
                 <div className="relative">
                     <ProfileCard
@@ -42,11 +43,10 @@ export default function About(props) {
             </div>
             <div className="w-full p-4 bg-white/10 backdrop-blur-md rounded-2xl border border-white/20 shadow-xl">
                 <h1 className="text-2xl font-semibold text-blue-300">{description}</h1>
-                {description === "Skills" ? (
-                    <SkillsCard />
-                ) : (
-                    <p className="text-md text-white">Tools content goes here.</p>
-                )}
+                <div className={`relative overflow-hidden`}>
+                    <SkillsCard description={description}/>
+                    <ToolsCard description={description}/>
+                </div>
             </div>
         </div>
     )
